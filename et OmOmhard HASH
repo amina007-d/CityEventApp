@@ -1,0 +1,17 @@
+[33m835295e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: commit: chore: remove sensitive gradle files from tracking
+[33mc930581[m HEAD@{1}: commit: fix
+[33m7f8f717[m HEAD@{2}: commit: build main UI screens and navigation
+[33m158241a[m HEAD@{3}: checkout: moving from main to main
+[33m158241a[m HEAD@{4}: checkout: moving from main to main
+[33m158241a[m HEAD@{5}: checkout: moving from main to main
+[33m158241a[m HEAD@{6}: reset: moving to HEAD~2
+[33ma334c29[m HEAD@{7}: checkout: moving from main to main
+[33ma334c29[m HEAD@{8}: reset: moving to HEAD~1
+[33m6973c3f[m[33m ([m[1;32mrescue[m[33m)[m HEAD@{9}: reset: moving to HEAD~1
+[33me6817e0[m HEAD@{10}: commit: fix
+[33m6973c3f[m[33m ([m[1;32mrescue[m[33m)[m HEAD@{11}: commit: feat: add event creation, listing and details flow
+[33ma334c29[m HEAD@{12}: commit: build main UI screens and navigation
+[33m6211144[m HEAD@{13}: commit: implement event repository and core business logic
+[33m158241a[m HEAD@{14}: commit: define data models and Firestore integration
+[33m9db4f99[m HEAD@{15}: commit: implement user authentication (register/login)
+[33m108858b[m HEAD@{16}: commit (initial): configure environment and connect Firebase
