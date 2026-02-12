@@ -19,4 +19,55 @@ class SyncPolicyTest {
         val merged = SyncPolicy.merge(cached, remote)
         assertThat(merged.name).isEqualTo("Cached")
     }
+    @Test
+    fun merge_returns_remote_if_cached_null() {
+        val remote = EventEntity(
+            "1","Remote","2026-02-11",null,null,null,null,null,null,null,
+            lastUpdatedEpochMs = 200
+        )
+
+        val merged = SyncPolicy.merge(null, remote)
+
+        assertThat(merged).isEqualTo(remote)
+    }
+
+    @Test
+    fun merge_keeps_remote_if_timestamps_equal() {
+        val cached = EventEntity(
+            "1","Cached","2026-02-11",null,null,null,null,null,null,null,
+            lastUpdatedEpochMs = 200
+        )
+        val remote = cached.copy(name = "Remote", lastUpdatedEpochMs = 200)
+
+        val merged = SyncPolicy.merge(cached, remote)
+
+        assertThat(merged.name).isEqualTo("Remote")
+    }
+
+    @Test
+    fun merge_preserves_id() {
+        val cached = EventEntity(
+            "1","Cached","2026-02-11",null,null,null,null,null,null,null,
+            lastUpdatedEpochMs = 100
+        )
+        val remote = cached.copy(name = "Updated", lastUpdatedEpochMs = 200)
+
+        val merged = SyncPolicy.merge(cached, remote)
+
+        assertThat(merged.id).isEqualTo("1")
+    }
+
+    @Test
+    fun merge_does_not_modify_cached_object_reference() {
+        val cached = EventEntity(
+            "1","Cached","2026-02-11",null,null,null,null,null,null,null,
+            lastUpdatedEpochMs = 100
+        )
+        val remote = cached.copy(name = "Updated", lastUpdatedEpochMs = 200)
+
+        val merged = SyncPolicy.merge(cached, remote)
+
+        assertThat(merged).isNotSameInstanceAs(cached)
+    }
 }
+

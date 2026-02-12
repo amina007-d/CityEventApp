@@ -22,8 +22,6 @@ android {
 
         testInstrumentationRunner = "com.example.cityeventproject.HiltTestRunner"
 
-        // Prefer Gradle property (gradle.properties), but also support local.properties
-        // because Android Studio commonly stores project-local secrets there.
         val tmKeyFromGradle = providers.gradleProperty("TM_API_KEY").orNull
         val tmKeyFromLocal: String? = runCatching {
             val props = Properties()
@@ -41,17 +39,19 @@ android {
         println("TM_API_KEY from Gradle = '$tmKey'")
         buildConfigField("String", "TM_API_KEY", "\"$tmKey\"")
     }
+    signingConfigs {
+        create("release") {
+            storeFile = file("keystore.jks")
+            storePassword = System.getenv("KEYSTORE_PASSWORD")
+            keyAlias = "release"
+            keyPassword = System.getenv("KEY_PASSWORD")
+        }
+    }
+
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-        debug {
-            // helpful for testing
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
         }
     }
